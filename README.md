@@ -2,7 +2,7 @@
 
 A modern, responsive, and production-ready personal portfolio for a Software Developer II. Built with **Next.js**, **Tailwind CSS**, **TypeScript**, and **Framer Motion**.
 
-**Live site:** [https://thewittystranger.github.io/portfolio-website/](https://thewittystranger.github.io/portfolio-website/)
+**Live site:** [https://engineeredbyankit.in/](https://engineeredbyankit.in/)
 
 ---
 
@@ -105,7 +105,7 @@ This project is configured to deploy automatically to **GitHub Pages** using a G
 If you haven't already:
 
 ```bash
-git remote add origin https://github.com/thewittystranger/portfolio-website.git
+git remote add origin https://github.com/engineeredbyankit/portfolio-website.git
 git branch -M main
 git push -u origin main
 ```
@@ -122,7 +122,7 @@ The workflow `.github/workflows/deploy.yml` triggers on every push to `main` or 
 
 1. Checks out the code.
 2. Installs dependencies with `npm ci`.
-3. Runs `npm run build` (which sets `basePath` to `/portfolio-website` automatically in CI).
+3. Reads the GitHub Pages settings and runs `npm run build` with the matching `basePath` (none on the custom domain, `/portfolio-website` on github.io).
 4. Uploads the `dist/` folder to GitHub Pages.
 
 You can also trigger it manually from the **Actions** tab by clicking **Run workflow**.
@@ -132,10 +132,10 @@ You can also trigger it manually from the **Actions** tab by clicking **Run work
 Once the workflow completes, the site is available at:
 
 ```
-https://thewittystranger.github.io/portfolio-website/
+https://engineeredbyankit.in/
 ```
 
-> If your repository name is different, update `basePath` in `next.config.ts` to match it.
+> The base path comes from the GitHub Pages settings, so a different repository name or a custom domain needs no code change.
 
 ---
 
