@@ -13,13 +13,13 @@ export function Portfolio() {
     <>
       <a
         href="#main"
-        className="btn-primary sr-only z-50 focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        className="btn btn-filled sr-only z-50 focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
       >
         Skip to content
       </a>
       <div className="flex min-h-screen flex-col bg-background text-foreground">
         <SiteHeader />
-        <main id="main" className="mx-auto w-full max-w-6xl flex-1 px-5 sm:px-8">
+        <main id="main" className="mx-auto w-full max-w-6xl flex-1 px-4 sm:px-8">
           <Hero />
           <ServicesSection />
           <ResultsSection />
@@ -29,7 +29,7 @@ export function Portfolio() {
           <ContactSection />
         </main>
         <footer className="border-t border-border">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-8 text-sm text-muted-foreground sm:px-8">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-8 text-sm text-muted-foreground sm:px-8">
             <p>
               © {new Date().getFullYear()} {profile.name}
             </p>

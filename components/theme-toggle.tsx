@@ -15,16 +15,13 @@ function useMounted() {
   );
 }
 
-const buttonClass =
-  "inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-foreground";
-
 export function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
   const mounted = useMounted();
 
   if (!mounted) {
     return (
-      <button type="button" aria-label="Switch colour theme" className={buttonClass}>
+      <button type="button" aria-label="Switch colour theme" className="icon-btn">
         <Sun className="h-[18px] w-[18px]" aria-hidden="true" />
       </button>
     );
@@ -38,7 +35,7 @@ export function ThemeToggle() {
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       title={isDark ? "Light theme" : "Dark theme"}
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className={buttonClass}
+      className="icon-btn"
     >
       {isDark ? (
         <Sun className="h-[18px] w-[18px]" aria-hidden="true" />

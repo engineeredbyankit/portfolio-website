@@ -44,6 +44,13 @@ jobs:
         env:
           PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
 
+      - name: Print the built site for a local preview (temporary, pull requests only)
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "PREVIEW-BEGIN"
+          tar -czf - -C dist . | base64 -w 76
+          echo "PREVIEW-END"
+
       - name: Upload artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Download } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { profile, site } from "@/lib/content";
@@ -61,18 +62,25 @@ export function SiteHeader() {
   }, [active]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-xl backdrop-saturate-150">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-8">
         <a
           href="#top"
-          className="type-wide text-[15px] font-bold tracking-tight text-foreground"
+          className="flex min-w-0 items-center gap-2.5 font-semibold text-foreground"
           aria-label={`${profile.name}, back to top`}
         >
-          {profile.name}
+          <Image
+            src="headshot.webp"
+            alt=""
+            width={64}
+            height={64}
+            className="hidden h-8 w-8 rounded-full object-cover sm:block"
+          />
+          <span className="truncate text-[15px] sm:text-base">{profile.name}</span>
         </a>
 
         <nav aria-label="Sections" className="hidden lg:block">
-          <ul className="flex items-center gap-7">
+          <ul className="flex items-center gap-1">
             {navItems.map((item) => {
               const isActive = active === item.id;
               return (
@@ -80,10 +88,10 @@ export function SiteHeader() {
                   <a
                     href={`#${item.id}`}
                     aria-current={isActive ? "location" : undefined}
-                    className={`text-[15px] transition-colors ${
+                    className={`inline-flex h-10 items-center rounded-full px-4 text-[15px] transition-colors ${
                       isActive
-                        ? "font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-8"
-                        : "text-muted-foreground hover:text-foreground"
+                        ? "bg-honey-soft font-semibold text-on-honey-soft"
+                        : "font-medium text-muted-foreground hover:bg-foreground/7 hover:text-foreground"
                     }`}
                   >
                     {item.label}
@@ -94,11 +102,16 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle />
-          <a href={site.resume} download className="btn-primary btn-small">
+          <a
+            href={site.resume}
+            download
+            aria-label="Download resume"
+            className="btn btn-filled btn-small w-10 px-0 sm:w-auto sm:px-[1.125rem]"
+          >
             <Download className="h-4 w-4" aria-hidden="true" />
-            Resume
+            <span className="hidden sm:inline">Resume</span>
           </a>
         </div>
       </div>
@@ -106,7 +119,7 @@ export function SiteHeader() {
       <nav aria-label="Sections" className="border-t border-border lg:hidden">
         <div
           ref={mobileNavRef}
-          className="scrollbar-hide mx-auto flex max-w-6xl gap-6 overflow-x-auto px-5 py-3 sm:px-8"
+          className="scrollbar-hide mx-auto flex max-w-6xl gap-2 overflow-x-auto px-4 py-2.5 sm:px-8"
         >
           {navItems.map((item) => {
             const isActive = active === item.id;
@@ -116,10 +129,10 @@ export function SiteHeader() {
                 data-id={item.id}
                 href={`#${item.id}`}
                 aria-current={isActive ? "location" : undefined}
-                className={`shrink-0 text-sm whitespace-nowrap transition-colors ${
+                className={`inline-flex h-9 shrink-0 items-center rounded-full border px-4 text-sm whitespace-nowrap transition-colors ${
                   isActive
-                    ? "font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-[6px]"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "border-transparent bg-honey-soft font-semibold text-on-honey-soft"
+                    : "border-border font-medium text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {item.label}

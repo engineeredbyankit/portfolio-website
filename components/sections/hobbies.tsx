@@ -5,9 +5,9 @@ import { Section } from "@/components/ui/section";
 export function HobbiesSection() {
   return (
     <Section id="beyond" title={hobbies.title}>
-      <div className="grid gap-x-14 gap-y-12 md:grid-cols-2">
-        <div>
-          <h3 className="type-heading text-[1.5rem] text-foreground">{hobbies.music.title}</h3>
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-card bg-surface p-6 sm:p-8">
+          <h3 className="type-title text-[1.375rem] text-foreground">{hobbies.music.title}</h3>
           <p className="mt-3 leading-7 text-muted-foreground">{hobbies.music.description}</p>
           <a
             href={hobbies.music.link}
@@ -20,8 +20,8 @@ export function HobbiesSection() {
           </a>
         </div>
 
-        <div>
-          <h3 className="type-heading text-[1.5rem] text-foreground">{hobbies.audio.title}</h3>
+        <div className="rounded-card bg-surface p-6 sm:p-8">
+          <h3 className="type-title text-[1.375rem] text-foreground">{hobbies.audio.title}</h3>
           <p className="mt-3 leading-7 text-muted-foreground">{hobbies.audio.description}</p>
           <p className="mt-3 leading-7 text-muted-foreground">
             <span className="font-semibold text-foreground">On repeat: </span>

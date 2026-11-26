@@ -1,14 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, JetBrains_Mono } from "next/font/google";
+import { Google_Sans_Flex, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { profile, site } from "@/lib/content";
 
-// Archivo's width axis gives the extra-wide headlines and the normal-width body text.
-const archivo = Archivo({
-  variable: "--font-archivo",
+// Material You's own typeface. The optical-size axis keeps big headings tight and body text open.
+const googleSansFlex = Google_Sans_Flex({
+  variable: "--font-gsf",
   subsets: ["latin"],
-  axes: ["wdth"],
+  axes: ["opsz"],
   display: "swap",
 });
 
@@ -69,8 +69,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f6f6fc" },
-    { media: "(prefers-color-scheme: dark)", color: "#12142e" },
+    { media: "(prefers-color-scheme: light)", color: "#fcf8f2" },
+    { media: "(prefers-color-scheme: dark)", color: "#18120e" },
   ],
 };
 
@@ -83,7 +83,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${archivo.variable} ${jetbrainsMono.variable} h-full scroll-smooth antialiased`}
+      className={`${googleSansFlex.variable} ${jetbrainsMono.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
