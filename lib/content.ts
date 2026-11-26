@@ -1,5 +1,5 @@
 export const site = {
-  url: "https://thewittystranger.github.io/portfolio-website/",
+  url: "https://engineeredbyankit.in/",
   title: "Ankit Kumar Choudhary · LLM Coding-Agent Evaluation Engineer",
   description:
     "Ankit Kumar Choudhary builds and grades SWE-bench-style evaluation tasks for frontier LLM coding agents, backed by 3 years of backend engineering at Goldman Sachs and Spinny.",
@@ -19,7 +19,7 @@ export const profile = {
   phone: "+91-7067423108",
   email: "ankitchoudhary.sde@gmail.com",
   linkedin: "https://linkedin.com/in/ankitchoudharysde",
-  github: "https://github.com/thewittystranger",
+  github: "https://github.com/engineeredbyankit",
   instagram: "https://instagram.com/sukoonkimehfil",
   previously: ["Goldman Sachs", "Spinny"],
 };

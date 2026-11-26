@@ -34,8 +34,15 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Read GitHub Pages settings
+        id: pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+
       - name: Build static site
         run: npm run build
+        env:
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
 
       - name: Upload artifact
         if: github.event_name != 'pull_request'
