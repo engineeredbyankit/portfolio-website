@@ -1,77 +1,46 @@
-import { Briefcase, Coffee } from "lucide-react";
-import { experiences } from "@/lib/content";
+import { experienceIntro, experiences } from "@/lib/content";
 import { Section } from "@/components/ui/section";
-import { Reveal } from "@/components/ui/reveal";
-import { Chip } from "@/components/ui/chip";
 
 export function ExperienceSection() {
   return (
-    <Section
-      id="experience"
-      eyebrow="Experience"
-      title="Where I've built and shipped"
-      intro="Evaluation work for frontier coding agents, on top of three years of production backend engineering."
-    >
-      <ol className="relative space-y-6 border-l border-border pl-6 sm:pl-8">
-        {experiences.map((exp, i) => {
+    <Section id="experience" title="Experience" intro={experienceIntro}>
+      <ol className="border-t border-border">
+        {experiences.map((exp) => {
           const isBreak = exp.kind === "break";
-          const Icon = isBreak ? Coffee : Briefcase;
           return (
-            <li key={`${exp.org}-${exp.period}`} className="relative">
-              <span
-                aria-hidden="true"
-                className={`absolute top-6 -left-[37px] flex h-6 w-6 items-center justify-center rounded-full border sm:-left-[45px] ${
-                  isBreak
-                    ? "border-border bg-background text-muted-foreground"
-                    : "border-accent/40 bg-background text-accent"
-                }`}
-              >
-                <Icon className="h-3 w-3" />
-              </span>
+            <li
+              key={`${exp.org}-${exp.period}`}
+              className="grid gap-3 border-b border-border py-10 md:grid-cols-[13rem_1fr] md:gap-10"
+            >
+              <p className="text-[15px] font-medium text-muted-foreground md:pt-1.5">{exp.period}</p>
+              <article>
+                <h3 className={`type-heading text-[1.5rem] ${isBreak ? "text-muted-foreground" : "text-foreground"}`}>
+                  {exp.role}
+                </h3>
+                <p className="mt-1.5 text-[15px] text-muted-foreground">
+                  <span className={isBreak ? "" : "font-semibold text-foreground"}>{exp.org}</span>
+                  {exp.detail && <>, {exp.detail}</>}
+                </p>
 
-              <Reveal delay={Math.min(i, 3) * 0.05}>
-                <article
-                  className={`rounded-2xl border p-5 sm:p-7 ${
-                    isBreak ? "border-dashed border-border bg-transparent" : "border-border bg-card"
-                  }`}
-                >
-                  <header className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                    <div>
-                      <h3 className="text-lg font-bold text-card-foreground sm:text-xl">{exp.role}</h3>
-                      <p className="mt-0.5 text-sm font-medium text-muted-foreground sm:text-base">
-                        <span className={isBreak ? "" : "text-foreground"}>{exp.org}</span>
-                        {exp.type && <> · {exp.type}</>}
-                        {exp.location && <> · {exp.location}</>}
-                      </p>
-                    </div>
-                    <p className="shrink-0 text-sm font-medium text-muted-foreground sm:pt-1">
-                      {exp.period}
-                    </p>
-                  </header>
+                <ul className="mt-5 max-w-3xl space-y-3">
+                  {exp.highlights.map((item) => (
+                    <li key={item.text} className="flex gap-3 leading-7 text-muted-foreground">
+                      <span aria-hidden="true" className="mt-[0.7rem] h-1.5 w-1.5 shrink-0 rounded-full bg-border" />
+                      <span>
+                        {item.label && <span className="font-semibold text-foreground">{item.label}: </span>}
+                        {item.text}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
 
-                  <ul className="mt-4 space-y-2.5 text-sm leading-6 text-muted-foreground sm:text-[15px] sm:leading-7">
-                    {exp.highlights.map((item) => (
-                      <li key={item.text} className="flex gap-3">
-                        <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent/70" />
-                        <span>
-                          {item.label && (
-                            <span className="font-semibold text-foreground">{item.label}: </span>
-                          )}
-                          {item.text}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {exp.tech && (
-                    <ul aria-label="Technologies" className="mt-5 flex flex-wrap gap-2">
-                      {exp.tech.map((t) => (
-                        <Chip key={t}>{t}</Chip>
-                      ))}
-                    </ul>
-                  )}
-                </article>
-              </Reveal>
+                {exp.tech && (
+                  <p className="mt-5 text-[15px] text-muted-foreground">
+                    <span className="font-semibold text-foreground">Tools: </span>
+                    {exp.tech.join(", ")}
+                  </p>
+                )}
+              </article>
             </li>
           );
         })}

@@ -1,17 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { profile, site } from "@/lib/content";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Archivo's width axis gives the extra-wide headlines and the normal-width body text.
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
+  axes: ["wdth"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Only for terminal output in the hero's test rig.
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,12 +30,13 @@ export const metadata: Metadata = {
     "coding agent evaluation",
     "SWE-bench",
     "AI evaluation engineer",
+    "freelance AI evaluation",
+    "evaluation tasks",
     "reward hacking",
+    "rubric design",
+    "agent trajectory review",
     "backend engineer",
-    "SDE-2",
     "distributed systems",
-    "Java",
-    "Python",
     "Bengaluru",
   ],
   alternates: { canonical: site.url },
@@ -46,7 +52,7 @@ export const metadata: Metadata = {
         url: `${site.url}og.png`,
         width: 1200,
         height: 630,
-        alt: `${profile.name} — ${profile.headline}`,
+        alt: `${profile.name}, ${profile.headline}`,
       },
     ],
   },
@@ -63,8 +69,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
-    { media: "(prefers-color-scheme: dark)", color: "#020617" },
+    { media: "(prefers-color-scheme: light)", color: "#f6f6fc" },
+    { media: "(prefers-color-scheme: dark)", color: "#12142e" },
   ],
 };
 
@@ -77,15 +83,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={`${archivo.variable} ${jetbrainsMono.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+      <body className="flex min-h-full flex-col bg-background text-foreground">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
       </body>

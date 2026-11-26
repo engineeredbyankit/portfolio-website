@@ -1,107 +1,161 @@
 export const site = {
   url: "https://engineeredbyankit.in/",
-  title: "Ankit Kumar Choudhary · LLM Coding-Agent Evaluation Engineer",
+  title: "Ankit Kumar Choudhary · Freelance LLM coding-agent evaluation",
   description:
-    "Ankit Kumar Choudhary builds and grades SWE-bench-style evaluation tasks for frontier LLM coding agents, backed by 3 years of backend engineering at Goldman Sachs and Spinny.",
+    "Freelance LLM coding-agent evaluation engineer. I build SWE-bench-style tasks from real bugs in real codebases, with hidden tests that pass correct fixes and catch wrong ones, and I audit graders and review agent trajectories.",
   resume: "Ankit_Kumar_Choudhary_Resume.pdf",
 };
 
 export const profile = {
   name: "Ankit Kumar Choudhary",
-  firstName: "Ankit",
   headline: "LLM Coding-Agent Evaluation Engineer",
-  subheadline: "Backend & Distributed Systems (SDE-2)",
+  role: "LLM coding-agent evaluation engineer, freelance",
+  statement: ["Hard tasks.", "Honest tests."],
   valueProp:
-    "I build and grade evaluation tasks for frontier LLM coding agents, backed by 3 years shipping high-throughput microservices at Goldman Sachs and Spinny.",
-  openTo: "Open to AI evaluation, forward-deployed and SDE-2 backend roles",
-  workLocations: "open to remote, Gurugram and Hyderabad",
+    "I build SWE-bench-style tasks from real bugs in real codebases, with hidden tests that pass correct fixes and catch wrong ones. For teams training and evaluating coding agents.",
+  availability: "Taking on new evaluation projects",
+  background: "Before this: three years building backend systems at",
   location: "Bengaluru, India",
   phone: "+91-7067423108",
-  email: "ankitchoudhary.sde@gmail.com",
-  linkedin: "https://linkedin.com/in/ankitchoudharysde",
+  email: "ankit@engineeredbyankit.in",
+  emailSubject: "Evaluation project",
+  linkedin: "https://www.linkedin.com/in/engineeredbyankit/",
   github: "https://github.com/engineeredbyankit",
   instagram: "https://instagram.com/sukoonkimehfil",
   previously: ["Goldman Sachs", "Spinny"],
 };
 
-export const metrics = [
-  { value: "~30", label: "Verified SWE-bench-style tasks, ~70 agent trials" },
-  { value: "120 TPS", label: "Sustained at 70 ms P99 in production" },
-  { value: "~$150K", label: "Saved per quarter (₹1.3 Cr) via anomaly detection" },
-  { value: "1800+", label: "Codeforces Expert rating" },
-];
+export const mailto = `mailto:${profile.email}?subject=${encodeURIComponent(profile.emailSubject)}`;
 
-export const about = {
-  paragraphs: [
-    "I author SWE-bench-style tasks on real open-source codebases: reproducible Docker environments, hidden fail-to-pass and regression tests, and rubrics that catch reward hacking and fabricated claims. Every task is verified three ways — the starting code fails, the reference passes, and plausible wrong fixes fail.",
-    "Before evaluation work, I spent three years building Java/Spring Boot and Python/Django microservices at Goldman Sachs and Spinny: event-driven pipelines, distributed caching and anomaly detection that moved real business numbers. That production background is why my tasks test what actually breaks in real systems.",
+/** The three checks every task passes before it ships (the hero's test rig). */
+export const verification = {
+  title: "How every task is checked",
+  command: "pytest tests/hidden",
+  steps: [
+    { label: "Starting code", note: "The bug is real", result: "fail" },
+    { label: "Reference fix", note: "The task can be solved", result: "pass" },
+    { label: "Plausible wrong fix", note: "The tests can't be fooled", result: "fail" },
+  ] as const,
+  verdict: "Only then does a task ship.",
+};
+
+export const services = {
+  title: "What I do for AI teams",
+  intro:
+    "Take one piece or the whole job, from finding the bug to the final review. Every task is checked the three ways shown above before it reaches you.",
+  items: [
+    {
+      title: "Coding-agent tasks",
+      summary:
+        "SWE-bench-style tasks mined from real upstream bugs in open-source Python and Java codebases of up to 355k lines.",
+      deliverables: [
+        "A Docker environment pinned to the exact upstream commit",
+        "Hidden fail-to-pass and regression tests that check behaviour, not one implementation",
+        "A reference solution",
+        "Proof that the starting code fails, the reference passes and plausible wrong fixes fail",
+      ],
+    },
+    {
+      title: "Grader and rubric audits",
+      summary:
+        "I look for the shortcuts an agent could take and close them before they skew your numbers.",
+      deliverables: [
+        "Hardened tests and rubrics, like the fix that stopped a skip-every-test exploit from passing",
+        "A review of your existing tasks and rubrics. One review caught errors in 7 of 12 rubrics",
+        "A written list of what's wrong and how to fix it",
+      ],
+    },
+    {
+      title: "Trajectory review",
+      summary:
+        "I read agent runs step by step and grade them against your rubric, with checks for claims the agent made up.",
+      deliverables: [
+        "Graded trajectories",
+        "Notes on where and why the agent went wrong",
+        "Flags for broken tests or data, like a run I threw out because its hidden test used the wrong seed data",
+      ],
+    },
+    {
+      title: "Long-horizon evaluations",
+      summary:
+        "Multi-turn tasks and full builds from a written spec, tested every turn with probe tests, kill -9 crash tests and fault injection.",
+      deliverables: [
+        "Multi-turn tasks on Django, SQLAlchemy, Kafka Streams and Kysely (TypeScript)",
+        "Full systems built from my own specs, like a CalDAV sync bridge and a stock exchange",
+        "Turn-by-turn test results",
+      ],
+    },
   ],
-  focus: [
-    {
-      title: "Agent evaluation tasks",
-      text: "SWE-bench-style tasks on Python and Java codebases up to 355k lines, in Docker sandboxes that build in under 15 minutes.",
-    },
-    {
-      title: "Graders that can't be gamed",
-      text: "Hidden tests and 8-dimension rubrics with fabrication checks; closed a skip-every-test exploit the old grader missed.",
-    },
-    {
-      title: "Backend & distributed systems",
-      text: "Event-driven microservices, CDC with Kafka, Hazelcast and Redis — 120 TPS at 70 ms P99 and 280 PDFs/s across 10 nodes.",
-    },
+};
+
+export const results = {
+  title: "Results so far",
+  items: [
+    { label: "Verified evaluation tasks", value: "~30, over ~70 agent trials" },
+    { label: "Largest codebase", value: "355k lines" },
+    { label: "Environment build time", value: "Under 15 minutes" },
+    { label: "Rubric errors caught in one review", value: "7 of 12" },
+    { label: "Benchmark sped up by an OpenBLAS fix", value: "7.5 s to 0.45 s" },
+    { label: "Throughput at Goldman Sachs", value: "120 TPS at 70 ms P99" },
+    { label: "Saved at Spinny", value: "~$150K (₹1.3 Cr) a quarter" },
+    { label: "Codeforces", value: "Expert, 1800+" },
   ],
 };
 
 export type Experience = {
   role: string;
   org: string;
-  type?: string;
-  location: string;
+  detail?: string;
   period: string;
   kind?: "break";
   highlights: { label?: string; text: string }[];
   tech?: string[];
 };
 
+export const experienceIntro =
+  "Evaluation work for frontier coding agents, after three years of production backend engineering. That background is why my tasks test what actually breaks in real systems.";
+
 export const experiences: Experience[] = [
   {
     role: "LLM Coding-Agent Evaluation Engineer",
     org: "Freelance",
-    type: "Contract",
-    location: "Remote",
+    detail: "Contract, remote",
     period: "Oct 2026 – Present",
     highlights: [
       {
         label: "Task authoring",
-        text: "Authored ~30 verified SWE-bench-style tasks on real open-source Python and Java codebases (up to 355k lines), validated across ~70 agent trials.",
+        text: "Authored ~30 verified SWE-bench-style tasks for frontier AI models on real open-source Python and Java codebases (up to 355k lines), validated across ~70 agent trials.",
+      },
+      {
+        label: "Problem design",
+        text: "Mined real upstream bugs (time-zone offsets, iCal recurrence, lock TTL and ownership), ported a 33-commit Redis Cluster PR onto a newer master, built shutdown-race and clock-migration tasks.",
       },
       {
         label: "Reproducible environments",
-        text: "Built Docker sandboxes with pinned commits, PostgreSQL and Redis; every environment builds in under 15 minutes.",
+        text: "Built Docker environments pinned to exact upstream commits, with PostgreSQL, Redis and a 3-node Redis Cluster; every environment builds in under 15 minutes.",
       },
       {
-        label: "Deterministic grading",
-        text: "Wrote hidden fail-to-pass and regression tests (pytest), each verified three ways: starting code fails, reference solution passes, plausible wrong fixes fail.",
-      },
-      {
-        label: "Distributed-systems tasks",
-        text: "Ported a 33-commit Redis Cluster PR onto a newer master and graded it on a 3-node Docker cluster; built lock-ownership, shutdown-race and monotonic-clock migration tasks.",
+        label: "Deterministic verifiers",
+        text: "Wrote hidden fail-to-pass and regression tests (pytest) that check behavior, not one implementation: my reference and other correct solutions pass, wrong or partial fixes fail.",
       },
       {
         label: "Anti-reward-hacking",
-        text: "Hardened graders so a skip-every-test exploit that passed the old grader now fails; fixed OpenBLAS oversubscription in emulated containers, cutting test time from 7.5 s to 0.45 s.",
+        text: "Hardened graders so a skip-every-test exploit that passed the old grader now fails; fixed OpenBLAS oversubscription in emulated containers, cutting a benchmark from 7.5 s to 0.45 s.",
       },
       {
-        label: "Trajectory review & QA",
-        text: "Graded agent trajectories on 8-dimension rubrics with fabrication checks; as QA reviewer, caught errors in 7 of 12 rubrics on a peer submission and wrote a source-verified review checklist.",
+        label: "Flagging and QA",
+        text: "Discarded a run whose hidden test used the wrong database's seed data (every correct answer scored 0) and fixed the test; as QA reviewer, caught errors in 7 of 12 rubrics on a peer submission.",
+      },
+      {
+        label: "Long-horizon evaluation",
+        text: "Designed multi-turn tasks on Django, SQLAlchemy, Kafka Streams and Kysely (TypeScript) and led long builds of full systems from my own specs (CalDAV sync bridge, stock exchange), testing every turn by hand with probe tests, kill -9 crash tests and fault injection.",
       },
     ],
     tech: ["Docker", "pytest", "Python", "Java", "Redis Cluster", "PostgreSQL", "Harbor", "OpenCode", "mini-swe-agent"],
   },
   {
-    role: "Career Break",
+    role: "Career break",
     org: "Upskilling in LLM coding agents",
-    location: "",
     period: "May 2025 – Oct 2026",
     kind: "break",
     highlights: [
@@ -114,7 +168,7 @@ export const experiences: Experience[] = [
   {
     role: "Software Developer II (SDE-2)",
     org: "Spinny",
-    location: "Gurugram",
+    detail: "Gurugram",
     period: "Dec 2024 – May 2025",
     highlights: [
       {
@@ -135,7 +189,7 @@ export const experiences: Experience[] = [
   {
     role: "Software Developer",
     org: "Goldman Sachs",
-    location: "Bengaluru",
+    detail: "Bengaluru",
     period: "Jun 2022 – Aug 2024",
     highlights: [
       {
@@ -143,7 +197,7 @@ export const experiences: Experience[] = [
         text: "Designed a prospect-capture microservice on MongoDB Change Streams (CDC) and Kafka, raising customer engagement by 23%.",
       },
       {
-        label: "Performance & security",
+        label: "Performance and security",
         text: "Sustained 120 TPS at 70 ms P99 through connection pooling, indexing and @Async, with AES-256 PII encryption and Resilience4j.",
       },
       {
@@ -161,7 +215,7 @@ export const experiences: Experience[] = [
 
 export const skills = [
   {
-    category: "AI Evaluation",
+    category: "AI evaluation",
     items: [
       "LLM coding-agent evaluation",
       "SWE-bench-style task authoring",
@@ -194,7 +248,7 @@ export const skills = [
     ],
   },
   {
-    category: "Data & Infrastructure",
+    category: "Data and infrastructure",
     items: ["Docker", "PostgreSQL", "MongoDB", "Redis", "Kafka", "Hazelcast", "Firebase", "AWS S3", "Git", "pytest"],
   },
 ];
@@ -217,20 +271,25 @@ export const recognition = [
 ];
 
 export const hobbies = {
+  title: "Off the clock",
   music: {
-    title: "Guitarist · Pianist · Ukulele Player · Cajon Player · Vocalist",
+    title: "Guitar, piano, ukulele, cajon and vocals",
     description:
       "Music is my favourite escape. I play guitar, piano, ukulele and cajon, but singing is where I truly express myself. From acoustic jams to soulful stage performances, I love creating moments that resonate.",
-    tags: ["Singing", "Guitar", "Piano", "Ukulele", "Cajon", "Live Jamming", "Stage Energy"],
     link: "https://instagram.com/sukoonkimehfil",
     linkLabel: "Follow on Instagram",
   },
   audio: {
-    title: "Retro, Hi-Fi & The Written Word",
+    title: "Retro, hi-fi and the written word",
     description:
-      "A devoted listener of classic retro tracks and an enthusiast for high-fidelity gear — from precision-tuned IEMs to dedicated DAC setups. I also write Urdu poetry and ghazals, lose myself in books, and experiment in the kitchen whenever I need a creative reset.",
+      "A devoted listener of classic retro tracks and an enthusiast for high-fidelity gear, from precision-tuned IEMs to dedicated DAC setups. I also write Urdu poetry and ghazals, lose myself in books, and experiment in the kitchen whenever I need a creative reset.",
     artists: ["Mohammed Rafi", "Kishore Kumar", "Lata Mangeshkar", "Mukesh"],
     link: "https://open.spotify.com/playlist/75jiwp9Aoz5l7R2VzmwQSr?si=8512948f50bd4903",
     linkLabel: "Listen on Spotify",
   },
+};
+
+export const contact = {
+  title: "Tell me what you're evaluating.",
+  text: "Send a short note about the models, the codebases and what you need measured. I'm in Bengaluru and work remotely.",
 };

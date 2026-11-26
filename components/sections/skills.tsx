@@ -1,41 +1,31 @@
-import { Bot, Code, Server, Database } from "lucide-react";
-import { skills } from "@/lib/content";
+import { education, recognition, skills } from "@/lib/content";
 import { Section } from "@/components/ui/section";
-import { Reveal } from "@/components/ui/reveal";
-import { Chip } from "@/components/ui/chip";
-
-const icons = [Bot, Code, Server, Database];
 
 export function SkillsSection() {
   return (
-    <Section id="skills" eyebrow="Skills" title="Toolkit">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {skills.map((group, i) => {
-          const Icon = icons[i % icons.length];
-          return (
-            <Reveal key={group.category} delay={i === 0 ? 0 : (i - 1) * 0.06} className={
-              i === 0
-                ? "md:col-span-2 lg:col-span-3"
-                : i === skills.length - 1
-                  ? "md:col-span-2 lg:col-span-1"
-                  : ""
-            }>
-              <div className="h-full rounded-2xl border border-border bg-card p-5 sm:p-6">
-                <h3 className="flex items-center gap-3 font-semibold text-card-foreground">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  {group.category}
-                </h3>
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <Chip key={item}>{item}</Chip>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          );
-        })}
+    <Section id="skills" title="Skills and background">
+      <div className="grid gap-x-14 gap-y-10 md:grid-cols-2">
+        {skills.map((group) => (
+          <div key={group.category}>
+            <h3 className="type-wide text-[15px] font-semibold text-foreground">{group.category}</h3>
+            <p className="mt-2 leading-8 text-muted-foreground">{group.items.join(", ")}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-14 grid gap-x-14 gap-y-8 border-t border-border pt-10 md:grid-cols-3">
+        <div>
+          <h3 className="type-wide text-[15px] font-semibold text-foreground">{education.degree}</h3>
+          <p className="mt-1 text-muted-foreground">
+            {education.school}, {education.period}
+          </p>
+        </div>
+        {recognition.map((item) => (
+          <div key={item.title}>
+            <h3 className="type-wide text-[15px] font-semibold text-foreground">{item.title}</h3>
+            <p className="mt-1 text-muted-foreground">{item.text}</p>
+          </div>
+        ))}
       </div>
     </Section>
   );

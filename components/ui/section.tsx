@@ -2,13 +2,11 @@ import type { ReactNode } from "react";
 
 export function Section({
   id,
-  eyebrow,
   title,
   intro,
   children,
 }: {
   id: string;
-  eyebrow: string;
   title: string;
   intro?: string;
   children: ReactNode;
@@ -17,23 +15,13 @@ export function Section({
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className="scroll-mt-28 border-t border-border py-16 sm:py-20 lg:scroll-mt-20"
+      className="scroll-mt-28 border-t border-border py-20 sm:py-24 lg:scroll-mt-20"
     >
-      <div className="mb-10 max-w-2xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-          {eyebrow}
-        </p>
-        <h2
-          id={`${id}-title`}
-          className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
-        >
+      <div className="mb-12 max-w-3xl">
+        <h2 id={`${id}-title`} className="type-heading text-[clamp(2rem,4.6vw,3.4rem)] text-foreground">
           {title}
         </h2>
-        {intro && (
-          <p className="mt-3 text-base leading-7 text-muted-foreground sm:text-lg">
-            {intro}
-          </p>
-        )}
+        {intro && <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">{intro}</p>}
       </div>
       {children}
     </section>
