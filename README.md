@@ -1,6 +1,6 @@
 # Ankit Kumar Choudhary — Portfolio Website
 
-A modern, responsive, and production-ready personal portfolio for a Software Developer II. Built with **Next.js**, **Tailwind CSS**, **TypeScript**, and **Framer Motion**.
+The website for my freelance work in LLM coding-agent evaluation: what I do for AI teams, results so far, experience and how to reach me. Built with **Next.js**, **Tailwind CSS** and **TypeScript**, exported as a static site and hosted on GitHub Pages.
 
 **Live site:** [https://engineeredbyankit.in/](https://engineeredbyankit.in/)
 
@@ -8,15 +8,14 @@ A modern, responsive, and production-ready personal portfolio for a Software Dev
 
 ## Features
 
-- **Recruiter-first single page** — hero with availability, key metrics and resume download above the fold; every section is reachable by scrolling, with a sticky scroll-spy nav.
-- **Responsive mobile & tablet navigation** — a sticky, horizontally scrollable pill bar on smaller screens and inline links on desktop.
-- **Dark / light theme toggle** — follows the visitor's system setting, with emerald accents.
-- **Resume-driven content** — experience, skills, education, achievements, and hobbies are all sourced from the provided resume.
-- **Rich media sections** — headshot, downloadable resume PDF, Instagram, Spotify, and social links.
-- **Smooth animations** — section transitions and staggered entrances powered by Framer Motion.
-- **Link previews & SEO** — Open Graph/Twitter card image, canonical URL and Person structured data.
-- **Accessible** — semantic headings, skip link, visible focus states, AA-contrast accents and reduced-motion support.
-- **Static export** — generates a fully static site in `dist/` for fast, CDN-friendly hosting.
+- **Client-first single page:** a hero with the main offer and contact buttons, then services, a results sheet, experience, skills and background, and a contact panel. A sticky nav highlights the section you are in.
+- **Test rig in the hero:** a small panel that shows the three checks every task passes (starting code fails, reference fix passes, a plausible wrong fix fails). It lights up once on load with CSS only and stays still when reduced motion is on.
+- **Brown and honey theme, light and dark:** Material You style, with tonal cards, pill buttons and Google Sans Flex. The toggle follows the system setting by default.
+- **Responsive:** a horizontally scrolling section bar on phones and tablets, inline links on desktop.
+- **Resume download:** the current resume PDF is linked from the header, the hero and the contact panel.
+- **Link previews and SEO:** Open Graph and Twitter card image, canonical URL and Person structured data.
+- **Accessible:** semantic headings, skip link, visible focus, AA contrast in both themes.
+- **Static export:** `next build` writes a fully static site to `dist/`.
 
 ---
 
@@ -24,12 +23,12 @@ A modern, responsive, and production-ready personal portfolio for a Software Dev
 
 | Layer | Technology |
 | --- | --- |
-| Framework | [Next.js](https://nextjs.org/) 16 (App Router) |
+| Framework | [Next.js](https://nextjs.org/) 16 (App Router, static export) |
 | Language | TypeScript |
 | Styling | Tailwind CSS v4 |
-| Animation | Framer Motion |
+| Theme | next-themes (class based, light and dark) |
 | Icons | Lucide React + custom SVG icons |
-| Fonts | Geist (via `next/font`) |
+| Fonts | Google Sans Flex and JetBrains Mono (via `next/font`) |
 | Hosting | GitHub Pages (via GitHub Actions) |
 
 ---
@@ -38,26 +37,28 @@ A modern, responsive, and production-ready personal portfolio for a Software Dev
 
 ```
 portfolio-website/
-├── app/                    # Next.js app routes & global styles
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── components/             # Reusable UI components
+├── app/                    # Layout, page, global styles, favicon
+│   ├── globals.css         # Colour tokens for both themes, buttons, chips, rig animation
+│   ├── layout.tsx          # Fonts, metadata, theme provider
+│   └── page.tsx            # Page and Person structured data
+├── components/
 │   ├── icons.tsx           # Custom SVG icons (LinkedIn, GitHub, Spotify, Instagram)
-│   ├── portfolio.tsx       # Main shell: sidebar + content panel
-│   ├── section-card.tsx    # Desktop navigation cards
-│   ├── sections/           # About, Experience, Skills, Education, Hobbies, Contact
+│   ├── portfolio.tsx       # Page shell: header, sections, footer
+│   ├── site-header.tsx     # Sticky header with section nav, theme toggle and resume button
+│   ├── test-rig.tsx        # The hero's "how every task is checked" panel
 │   ├── theme-provider.tsx
 │   ├── theme-toggle.tsx
-│   └── ...
+│   ├── sections/           # Hero, Services, Results, Experience, Skills, Hobbies, Contact
+│   └── ui/section.tsx      # Shared section heading
 ├── lib/
-│   └── content.ts          # All resume-derived content
-├── public/                 # Static assets
-│   ├── headshot.png
+│   └── content.ts          # All the text on the site
+├── public/
 │   ├── Ankit_Kumar_Choudhary_Resume.pdf
+│   ├── headshot.webp
+│   ├── og.png              # Link preview image
 │   └── .nojekyll
 ├── .github/workflows/
-│   └── deploy.yml          # GitHub Pages deployment workflow
+│   └── deploy.yml          # Lint, build and deploy to GitHub Pages
 ├── next.config.ts
 ├── package.json
 └── postcss.config.mjs
@@ -141,10 +142,11 @@ https://engineeredbyankit.in/
 
 ## Customisation
 
-- **Content:** edit `lib/content.ts` to update your summary, experience, skills, education, achievements, hobbies, and links.
-- **Headshot:** replace `public/headshot.png` with your own photo.
-- **Resume:** replace `public/Ankit_Kumar_Choudhary_Resume.pdf` with your updated resume.
-- **Colors:** tweak the theme tokens in `app/globals.css`.
+- **Content:** edit `lib/content.ts` to update the services, results, experience, skills, education, hobbies and links.
+- **Headshot:** replace `public/headshot.webp`.
+- **Resume:** replace `public/Ankit_Kumar_Choudhary_Resume.pdf`.
+- **Colours:** the light and dark tokens are at the top of `app/globals.css`.
+- **Link preview:** replace `public/og.png` (1200 × 630).
 
 ---
 

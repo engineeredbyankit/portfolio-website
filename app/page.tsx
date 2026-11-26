@@ -1,5 +1,5 @@
 import { Portfolio } from "@/components/portfolio";
-import { experiences, profile, site, skills } from "@/lib/content";
+import { profile, site, skills } from "@/lib/content";
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -20,9 +20,6 @@ const personSchema = {
     "@type": "CollegeOrUniversity",
     name: "National Institute of Technology, Patna",
   },
-  worksFor: experiences
-    .filter((e) => e.kind !== "break" && e.period.includes("Present"))
-    .map((e) => ({ "@type": "Organization", name: e.org })),
   knowsAbout: skills.flatMap((group) => group.items).slice(0, 25),
   sameAs: [profile.linkedin, profile.github],
 };
