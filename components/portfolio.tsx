@@ -11,10 +11,8 @@ import { profile, site } from "@/lib/content";
 export function Portfolio() {
   return (
     <>
-      <a
-        href="#main"
-        className="btn btn-filled sr-only z-50 focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
-      >
+      {/* Sits above the viewport until it gets keyboard focus. */}
+      <a href="#main" className="btn btn-filled fixed top-3 left-3 z-50 -translate-y-24 focus:translate-y-0">
         Skip to content
       </a>
       <div className="flex min-h-screen flex-col bg-background text-foreground">
